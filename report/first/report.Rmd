@@ -4,7 +4,7 @@ title: Chicken Weights
 
 ```{r init, include=FALSE, echo=FALSE}
 feeds <- c("linseed", "horsebean", "casein", "meatmeal")
-files <- file.path("output/density/", paste0(feeds, ".density.rds"))
+files <- file.path("../../output/density/", paste0(feeds, ".density.rds"))
 
 Map(system, paste("redo-ifchange", files))
 dens <- Map(readRDS, files)

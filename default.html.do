@@ -3,8 +3,8 @@
 library(rmarkdown)
 
 args <- commandArgs(trailingOnly=TRUE)
-md  <- paste0(args[2], ".md")
+rmd  <- paste0(args[2], ".Rmd")
 
-system(paste("redo-ifchange", md))
+system(paste("redo-ifchange", rmd))
 
-render(md, output_file=basename(args[3]), quiet=TRUE)
+render(rmd, output_file=basename(args[3]), quiet=TRUE)
