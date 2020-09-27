@@ -1,0 +1,5 @@
+.redo/
+*.rds
+*.md
+*.html
+figures/
