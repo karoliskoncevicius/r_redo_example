@@ -7,8 +7,8 @@ Required software:
 
 1. R
 2. R knitr package
+3. R rmarkdown package
 4. redo
-4. multimarkdown
 
 In order to reproduce the report simply execute the command:
 
