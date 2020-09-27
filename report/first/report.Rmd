@@ -1,0 +1,32 @@
+```{r init, include=FALSE, echo=FALSE}
+feeds <- c("linseed", "horsebean", "casein", "meatmeal")
+files <- file.path("output/density/", paste0(feeds, ".density.rds"))
+
+Map(system, paste("redo-ifchange", files))
+dens <- Map(readRDS, files)
+names(dens) <- feeds
+```
+
+# Chicken Weights #
+
+Chicken weight densities stratified by feed type:
+
+```{r plot, include=TRUE, echo=FALSE, fig.width=10, fig.height=5}
+xs <- Map(getElement, dens, "x")
+ys <- Map(getElement, dens, "y")
+ys <- Map(function(x) (x-min(x)) / max(x-min(x)) * 1.5, ys)
+ys <- Map(`+`, ys, length(ys):1)
+
+plot.new()
+plot.window(xlim = range(xs), ylim = c(1,length(ys)+1.5))
+abline(h = length(ys):1, col = "grey")
+
+invisible(
+  Map(polygon, xs, ys, col = hcl.colors(length(ys), "Zissou", alpha = 0.8))
+)
+
+axis(1, tck = -0.01)
+mtext(names(dens), 2, at = length(ys):1, las = 2, padj = 0)
+title("Chicken weights", adj = 0, cex = 0.8)
+```
+
